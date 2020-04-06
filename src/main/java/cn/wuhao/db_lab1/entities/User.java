@@ -2,7 +2,7 @@ package cn.wuhao.db_lab1.entities;
 
 import java.util.Objects;
 
-public class user {
+public class User {
 
     private String username;
     private String password;
@@ -27,7 +27,7 @@ public class user {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        user user = (user) o;
+        User user = (User) o;
         return Objects.equals(getUsername(), user.getUsername()) &&
                 Objects.equals(getPassword(), user.getPassword());
     }
@@ -35,5 +35,13 @@ public class user {
     @Override
     public int hashCode() {
         return Objects.hash(getUsername(), getPassword());
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
