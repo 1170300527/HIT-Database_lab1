@@ -1,28 +1,24 @@
-package cn.wuhao.db_lab1;
+package cn.wuhao.db_lab1.dao;
+
 
 import cn.wuhao.db_lab1.entities.Student;
-import cn.wuhao.db_lab1.entities.User;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
 
-@SpringBootTest
-class DbLab1ApplicationTests {
+@Repository
+public class StudentDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    @Test
-    void contextLoads() throws SQLException {
+    public List<Student> getAll() {
         List<Student> students = jdbcTemplate.query("SELECT stuId, stuName, classId, collegeName, departmentname," +
-                " gender, entertime ,grade, stuAge, stuPhone FROM student NATURAL JOIN class,department,college;",
+                        " gender,stuAge, entertime, grade, stuAge, stuPhone FROM student NATURAL JOIN class,department,college;",
                 new BeanPropertyRowMapper<Student>(Student.class));
-        System.out.println(students);
+        return students;
     }
-
 }
