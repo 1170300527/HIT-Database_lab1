@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.thymeleaf.expression.Ids;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -19,9 +20,8 @@ class DbLab1ApplicationTests {
 
     @Test
     void contextLoads() throws SQLException {
-        List<Student> students = jdbcTemplate.query("SELECT stuId, stuName, classId, collegeName, departmentname," +
-                " gender, entertime ,grade, stuAge, stuPhone FROM student NATURAL JOIN class,department,college;",
-                new BeanPropertyRowMapper<Student>(Student.class));
+        List<Student> students = jdbcTemplate.query("select * from student where stuId = ?",
+                new BeanPropertyRowMapper<Student>(Student.class), 1);
         System.out.println(students);
     }
 

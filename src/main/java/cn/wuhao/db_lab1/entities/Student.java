@@ -8,7 +8,7 @@ public class Student {
     private String stuName;
     private int classId;
     private String gender;
-    private int stuAge;
+    private Integer stuAge;
     private String stuPhone;
     private Timestamp enterTime;
     private int grade;
@@ -47,11 +47,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public int getStuAge() {
+    public Integer getStuAge() {
         return stuAge;
     }
 
-    public void setStuAge(int stuAge) {
+    public void setStuAge(Integer stuAge) {
         this.stuAge = stuAge;
     }
 
