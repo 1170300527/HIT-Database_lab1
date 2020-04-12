@@ -46,7 +46,6 @@ public class StudentController {
     @GetMapping("/stu/{id}")
     public String editPage(@PathVariable("id") Integer id) {
         Student student = studentServe.findById(id);
-        System.out.println(student);
         return "stu/edit";
     }
 }
