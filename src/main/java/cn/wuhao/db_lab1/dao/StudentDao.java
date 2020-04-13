@@ -16,8 +16,9 @@ public class StudentDao {
     JdbcTemplate jdbcTemplate;
 
     public List<Student> getAll() {
-        List<Student> students = jdbcTemplate.query("SELECT stuId, stuName, classId, collegeName, departmentname," +
-                        " gender,stuAge, entertime, grade, stuPhone FROM student NATURAL JOIN class,department,college;",
+        List<Student> students = jdbcTemplate.query("SELECT stuId, stuName, classId, collegeName," +
+                        " departmentname,gender,stuAge, entertime, grade, stuPhone FROM student" +
+                        " NATURAL JOIN class NATURAL JOIN department NATURAL JOIN college;",
                 new BeanPropertyRowMapper<Student>(Student.class));
         return students;
     }
@@ -32,5 +33,15 @@ public class StudentDao {
         List<Student> students = jdbcTemplate.query("select * from student where stuId = ?",
                 new BeanPropertyRowMapper<Student>(Student.class), id);
         return (students.get(0));
+    }
+
+    public void update(Student student) {
+        jdbcTemplate.update("update student set stuName=?, classId=?, gender=?, stuAge=?, stuPhone=?, entertime=?" +
+                " where stuId=?", student.getStuName(), student.getClassId(), student.getGender(), student.getStuAge(),
+                student.getStuPhone(), student.getEnterTime(), student.getStuId());
+    }
+
+    public void delete(int id) {
+        jdbcTemplate.update("delete from student where stuId=?", id);
     }
 }

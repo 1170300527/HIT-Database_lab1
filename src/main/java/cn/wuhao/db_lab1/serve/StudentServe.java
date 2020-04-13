@@ -27,4 +27,12 @@ public class StudentServe {
         Student student = studentDao.findById(id);
         return student;
     }
+
+    public void update(Student student) {
+        studentDao.update(student);
+    }
+
+    public void delete(int id) {
+        studentDao.delete(id);
+    }
 }

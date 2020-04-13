@@ -85,7 +85,7 @@
 									<td>
 										<div class="btn-group btn-group-sm" role="group" aria-label="Basic example" >
 											<a class="btn btn-secondary" th:href="@{/stu/}+${stu.stuId}">编辑</a>
-											<a class="btn btn-secondary">删除</a>
+											<button th:attr="del_uri=@{/stu/}+${stu.stuId}" class="btn btn-secondary deleteBtn">删除</button>
 										</div>
 									</td>
 								</tr>
@@ -93,25 +93,34 @@
 						</table>
 					</div>
 				</main>
+				<form id="deleteEmpForm" method="post">
+					<input type="hidden" name="_method" value="delete">
+				</form>
 			</div>
 		</div>
 
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" src="webjars/jquery/3.4.1/jquery.slim.min.js" ></script>
-		<script type="text/javascript" src="asserts/js/popper.min.js" ></script>
-		<script type="text/javascript" src="webjars/bootstrap/4.4.1-1/js/bootstrap.min.js" ></script>
+		<script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.slim.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/asserts/js/popper.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}" ></script>
 
 		<!-- Icons -->
-		<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+		<script type="text/javascript" th:src="@{/asserts/js/feather.min.js}"></script>
 		<script>
 			feather.replace()
 		</script>
 
 		<!-- Graphs -->
-		<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
-
+		<script type="text/javascript" th:src="@{/asserts/js/Chart.min.js}"></script>
+		<script>
+			$(".deleteBtn").click(function () {
+				$("#deleteEmpForm").attr("action", $(this).attr("del_uri")).submit();
+				console.log("here")
+				return false;
+			});
+		</script>
 	</body>
 
 </html>

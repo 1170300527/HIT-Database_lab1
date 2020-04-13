@@ -51,40 +51,42 @@
 				<div th:replace="~{commons/bar::#sidebar(activeUri='stus')}"></div>
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<form th:action="@{/stu}" method="post">
+						<input type="hidden" name="_method" value="put">
+						<input type="hidden" name="stuId" th:value="${student.stuId}">
 						<div class="form-group">
 							<label>姓名</label>
-							<input name="stuName" type="text" class="form-control" placeholder="姓名">
+							<input name="stuName" type="text" class="form-control" placeholder="姓名" th:value="${student.stuName}">
 						</div>
 						<div class="form-group">
 							<label>班级</label>
 							<select class="form-control" name="classId">
-								<option th:each="class:${classes}">[[${class.classId}]]</option>
+								<option th:selected="${class.classId} == ${student.classId}" th:each="class:${classes}">[[${class.classId}]]</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>性别</label><br/>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender"  value="男">
+								<input class="form-check-input" type="radio" name="gender"  value="男" th:checked="${student.gender}=='男'">
 								<label class="form-check-label">男</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender"  value="女">
+								<input class="form-check-input" type="radio" name="gender"  value="女" th:checked="${student.gender}=='女'">
 								<label class="form-check-label">女</label>
 							</div>
 						</div>
 						<div class="form-group">
 							<label>入学日期</label><br/>
-							<input name="enterTime" placeholder="请选择入学日期" id="blrz-entry-date-start" type="text" >
+							<input name="enterTime" placeholder="请选择入学日期" id="blrz-entry-date-start" type="text" th:value="${student.enterTime}">
 						</div>
 						<div class="form-group">
 							<label>年龄</label>
-							<input name="stuAge" type="text" class="form-control" placeholder="18">
+							<input name="stuAge" type="text" class="form-control" placeholder="18" th:value="${student.stuAge}">
 						</div>
 						<div class="form-group">
 							<label>电话号码</label>
-							<input name="stuPhone" type="text" class="form-control" placeholder="10086">
+							<input name="stuPhone" type="text" class="form-control" placeholder="10086" th:value="${student.stuPhone}">
 						</div>
-						<button type="submit" class="btn btn-primary">添加</button>
+						<button type="submit" class="btn btn-primary">修改</button>
 					</form>
 				</main>
 			</div>
