@@ -48,17 +48,17 @@
 		<div th:replace="~{commons/bar::topbar}"></div>
 		<div class="container-fluid">
 			<div class="row">
-				<div th:replace="~{commons/bar::#sidebar(activeUri='stus')}"></div>
+				<div th:replace="~{commons/bar::#sidebar(activeUri='teacher')}"></div>
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-					<form th:action="@{/stu}" method="post">
+					<form th:action="@{/teacher}" method="post">
 						<div class="form-group">
 							<label>姓名</label>
-							<input name="stuName" type="text" class="form-control" placeholder="姓名">
+							<input name="teachName" type="text" class="form-control" placeholder="姓名">
 						</div>
 						<div class="form-group">
-							<label>班级</label>
-							<select class="form-control" name="classId">
-								<option th:each="class:${classes}">[[${class.classId}]]</option>
+							<label>专业</label>
+							<select class="form-control" name="departmentId">
+								<option th:each="department:${departments}">[[${department.departmentId}]]</option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -73,16 +73,20 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label>入学日期</label><br/>
-							<input name="enterTime" placeholder="请选择入学日期" id="blrz-entry-date-start" type="text" >
+							<label>生日</label><br/>
+							<input name="teachBirth" placeholder="请选择入学日期" id="blrz-entry-date-start" type="text" >
 						</div>
 						<div class="form-group">
 							<label>年龄</label>
-							<input name="stuAge" type="text" class="form-control" placeholder="18">
+							<input name="teachAge" type="text" class="form-control" placeholder="18">
 						</div>
 						<div class="form-group">
 							<label>电话号码</label>
-							<input name="stuPhone" type="text" class="form-control" placeholder="10086">
+							<input name="teachPhone" type="text" class="form-control" placeholder="10086">
+						</div>
+						<div class="form-group">
+							<label>工资</label>
+							<input name="teachSalary" type="text" class="form-control" placeholder="0">
 						</div>
 						<button type="submit" class="btn btn-primary">添加</button>
 					</form>

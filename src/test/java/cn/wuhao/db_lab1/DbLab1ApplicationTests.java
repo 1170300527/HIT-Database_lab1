@@ -1,5 +1,7 @@
 package cn.wuhao.db_lab1;
 
+import cn.wuhao.db_lab1.dao.DepartmentDao;
+import cn.wuhao.db_lab1.dao.TeacherDao;
 import cn.wuhao.db_lab1.entities.Student;
 import cn.wuhao.db_lab1.entities.User;
 import org.junit.jupiter.api.Test;
@@ -18,11 +20,12 @@ class DbLab1ApplicationTests {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    DepartmentDao departmentDao;
+
     @Test
     void contextLoads() throws SQLException {
-        List<Student> students = jdbcTemplate.query("select * from student where stuId = ?",
-                new BeanPropertyRowMapper<Student>(Student.class), 1);
-        System.out.println(students);
+        System.out.println(departmentDao.getAll());
     }
 
 }

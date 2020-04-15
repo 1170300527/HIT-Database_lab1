@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>HIT DATABASE</title>
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+	<link rel="icon" th:href="@{/asserts/img/favicon.ico}" type="images/x-ico" />
+	<link th:href="@{/asserts/css/bootstrap-datetimepicker.min.css}" rel="stylesheet" />
+	<style type="text/css">
+		/* Chart.js */
+
+		@-webkit-keyframes chartjs-render-animation {
+			from {
+				opacity: 0.99
+			}
+			to {
+				opacity: 1
+			}
+		}
+
+		@keyframes chartjs-render-animation {
+			from {
+				opacity: 0.99
+			}
+			to {
+				opacity: 1
+			}
+		}
+
+		.chartjs-render-monitor {
+			-webkit-animation: chartjs-render-animation 0.001s;
+			animation: chartjs-render-animation 0.001s;
+		}
+	</style>
+</head>
+
+<body>
+<div th:replace="~{commons/bar::topbar}"></div>
+<div class="container-fluid">
+	<div class="row">
+		<div th:replace="~{commons/bar::#sidebar(activeUri='teacher')}"></div>
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+			<form th:action="@{/teacher}" method="post">
+				<input type="hidden" name="_method" value="put">
+				<input type="hidden" name="teachId" th:value="${teacher.teachId}">
+				<div class="form-group">
+					<label>姓名</label>
+					<input th:value="${teacher.teachName}" name="teachName" type="text" class="form-control" placeholder="姓名">
+				</div>
+				<div class="form-group">
+					<label>专业</label>
+					<select th:selected="${teacher.departmentId}" class="form-control" name="departmentId">
+						<option th:each="department:${departments}">[[${department.departmentId}]]</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>性别</label><br/>
+					<div class="form-check form-check-inline">
+						<input th:checked="${teacher.gender == '男'}" class="form-check-input" type="radio" name="gender"  value="男">
+						<label class="form-check-label">男</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input th:checked="${teacher.gender == '女'}" class="form-check-input" type="radio" name="gender"  value="女">
+						<label class="form-check-label">女</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>生日</label><br/>
+					<input th:value="${teacher.teachBirth}" name="teachBirth" placeholder="请选择入学日期" id="blrz-entry-date-start" type="text" >
+				</div>
+				<div class="form-group">
+					<label>年龄</label>
+					<input th:value="${teacher.teachAge}" name="teachAge" type="text" class="form-control" placeholder="18">
+				</div>
+				<div class="form-group">
+					<label>电话号码</label>
+					<input th:value="${teacher.teachPhone}" name="teachPhone" type="text" class="form-control" placeholder="10086">
+				</div>
+				<div class="form-group">
+					<label>工资</label>
+					<input th:value="${teacher.teachSalary}" name="teachSalary" type="text" class="form-control" placeholder="0">
+				</div>
+				<button type="submit" class="btn btn-primary">修改</button>
+			</form>
+		</main>
+	</div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.slim.min.js}" ></script>
+<script type="text/javascript" th:src="@{/asserts/js/popper.min.js}" ></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}" ></script>
+
+<!-- Icons -->
+<script type="text/javascript" th:src="@{/asserts/js/feather.min.js}"></script>
+<script>
+	feather.replace()
+</script>
+
+<!-- Graphs -->
+<script type="text/javascript" th:src="@{/asserts/js/Chart.min.js}"></script>
+<script th:src="@{/asserts/js/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{/asserts/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+<script>
+	$("#blrz-entry-date-start").datetimepicker({//选择年月日
+		language: 'zh-CN',
+		//默认选择格式
+		format: "yyyy-mm-dd hh:ii:ss",
+		minView: "month",
+		autoclose: true,
+		todayBtn: true,
+		//选择板所在输入框位置
+		pickerPosition: "bottom-left"
+	});
+</script>
+
+</body>
+
+</html>

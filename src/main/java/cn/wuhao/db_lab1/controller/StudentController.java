@@ -26,14 +26,14 @@ public class StudentController {
     public String stuList(Map<String, List<Student>> map) {
         List<Student> students = studentServe.getAll();
         map.put("students", students);
-        return "stu/list";
+        return "/stu/list";
     }
 
     @GetMapping("/stu")
     public String toAddPage(Map<String, List<Class>> map) {
         List<Class> classes = classServe.getAll();
         map.put("classes", classes);
-        return "stu/add";
+        return "/stu/add";
     }
 
     @PostMapping("/stu")
@@ -48,7 +48,7 @@ public class StudentController {
         model.addAttribute("student", student);
         List<Class> classes = classServe.getAll();
         model.addAttribute("classes", classes);
-        return "stu/edit";
+        return "/stu/edit";
     }
 
     @PutMapping("/stu")
