@@ -1,6 +1,7 @@
 package cn.wuhao.db_lab1;
 
 import cn.wuhao.db_lab1.dao.DepartmentDao;
+import cn.wuhao.db_lab1.dao.ScoreDao;
 import cn.wuhao.db_lab1.dao.TeacherDao;
 import cn.wuhao.db_lab1.entities.Student;
 import cn.wuhao.db_lab1.entities.User;
@@ -23,9 +24,12 @@ class DbLab1ApplicationTests {
     @Autowired
     DepartmentDao departmentDao;
 
+    @Autowired
+    ScoreDao scoreDao;
+
     @Test
     void contextLoads() throws SQLException {
-        System.out.println(departmentDao.getAll());
+        System.out.println(scoreDao.getAll());
     }
 
 }
