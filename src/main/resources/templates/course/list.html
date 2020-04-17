@@ -47,10 +47,16 @@
 		<div th:replace="~{commons/bar::topbar}"></div>
 		<div class="container-fluid" id="app">
 			<div class="row">
-				<div th:replace="~{commons/bar::#sidebar(activeUri='score')}"></div>
+				<div th:replace="~{commons/bar::#sidebar(activeUri='course')}"></div>
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 					<div>
-						<h2 style="display:inline-block">学生成绩</h2>
+						<h2 style="display:inline-block">选课信息</h2>
+						<form th:action="@{/course}" style="display:inline-block; width: auto; float: right">
+							<select class="form-control" name="courseId" style="display:inline-block; width:auto;">
+								<option  th:selected="${nowId} == ${course.courseId}" th:each="course:${courses}" th:value="${course.courseId}">[[${course.courseName}]]</option>
+							</select>
+							<button type="submit" class="btn btn-primary" style="display:inline-block; margin-bottom: 8px">查询</button>
+						</form>
 					</div>
 					<div class="table-responsive">
 						<table class="table table-striped table-sm">
@@ -58,24 +64,22 @@
 								<tr>
 									<th>学号</th>
 									<th>姓名</th>
-									<th>教师</th>
-									<th>课程</th>
-									<th>分数</th>
-									<th>楼</th>
-									<th>校区</th>
-									<th>学分</th>
+									<th>班号</th>
+									<th>专业</th>
+									<th>学院</th>
+									<th>年龄</th>
+									<th>手机号</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="score:${scores}">
-									<td th:text="${score.stuId}"></td>
-									<td th:text="${score.stuName}"></td>
-									<td th:text="${score.teachName}"></td>
-									<td th:text="${score.courseName}"></td>
-									<td th:text="${score.score}"></td>
-									<td th:text="${score.buildingName}"></td>
-									<td th:text="${score.campus}"></td>
-									<td th:text="${score.credit}"></td>
+								<tr th:each="elective:${electives}">
+									<td th:text="${elective.stuId}"></td>
+									<td th:text="${elective.stuName}"></td>
+									<td th:text="${elective.classId}"></td>
+									<td th:text="${elective.departmentName}"></td>
+									<td th:text="${elective.collegeName}"></td>
+									<td th:text="${elective.stuAge}"></td>
+									<td th:text="${elective.stuPhone}"></td>
 								</tr>
 							</tbody>
 						</table>
