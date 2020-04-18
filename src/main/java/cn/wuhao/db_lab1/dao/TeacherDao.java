@@ -16,7 +16,7 @@ public class TeacherDao {
 
     public List<Teacher> getAll() {
         List<Teacher> teachers = jdbcTemplate.query("SELECT teachId, teachName, collegeName," +
-                        " departmentName, teachSalary, teachAge, teachBirth, teachPhone, gender FROM teacher" +
+                        " departmentName, teachSalary, teachAge, teachBirth, teachPhone, gender, departmentId FROM teacher" +
                         " NATURAL JOIN department NATURAL JOIN college;",
                 new BeanPropertyRowMapper<Teacher>(Teacher.class));
         return teachers;

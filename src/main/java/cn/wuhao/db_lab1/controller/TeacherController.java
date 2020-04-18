@@ -4,6 +4,8 @@ import cn.wuhao.db_lab1.entities.Class;
 import cn.wuhao.db_lab1.entities.Department;
 import cn.wuhao.db_lab1.entities.Student;
 import cn.wuhao.db_lab1.entities.Teacher;
+import cn.wuhao.db_lab1.exception.EmptyException;
+import cn.wuhao.db_lab1.exception.SameException;
 import cn.wuhao.db_lab1.serve.DepartmentServe;
 import cn.wuhao.db_lab1.serve.TeacherServe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,13 @@ public class TeacherController {
 
     @PostMapping("/teacher")
     public String addTeacher(Teacher teacher) {
+        List<Teacher> teachers = teacherServe.getAll();
+        if (teacher.getTeachName().isEmpty())
+            throw new EmptyException("请填写教师姓名");
+        else if (teacher.getGender() == null)
+            throw new EmptyException("请勾选教师性别");
+        else if (teachers.contains(teacher))
+            throw new SameException("添加教师已存在");
         teacherServe.add(teacher);
         return "redirect:/teachers";
     }

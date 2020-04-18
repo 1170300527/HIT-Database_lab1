@@ -24,7 +24,7 @@ public class TeacherServe {
 
     public Teacher findById(int id) {
         Teacher teacher = teacherDao.findById(id);
-        return (teacher);
+        return teacher;
     }
 
     public void update(Teacher teacher) {

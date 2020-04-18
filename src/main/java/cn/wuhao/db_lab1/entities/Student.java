@@ -96,6 +96,34 @@ public class Student {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        if (getClassId() != student.getClassId()) return false;
+        if (getStuName() != null ? !getStuName().equals(student.getStuName()) : student.getStuName() != null)
+            return false;
+        if (getGender() != null ? !getGender().equals(student.getGender()) : student.getGender() != null) return false;
+        if (getStuAge() != null ? !getStuAge().equals(student.getStuAge()) : student.getStuAge() != null) return false;
+        if (getStuPhone() != null ? !getStuPhone().equals(student.getStuPhone()) : student.getStuPhone() != null)
+            return false;
+        return getEnterTime() != null ? getEnterTime().equals(student.getEnterTime()) : student.getEnterTime() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getStuName() != null ? getStuName().hashCode() : 0;
+        result = 31 * result + getClassId();
+        result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
+        result = 31 * result + (getStuAge() != null ? getStuAge().hashCode() : 0);
+        result = 31 * result + (getStuPhone() != null ? getStuPhone().hashCode() : 0);
+        result = 31 * result + (getEnterTime() != null ? getEnterTime().hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Student{" +
                 "stuId=" + stuId +

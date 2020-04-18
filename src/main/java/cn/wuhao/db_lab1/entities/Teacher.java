@@ -1,6 +1,7 @@
 package cn.wuhao.db_lab1.entities;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 public class Teacher {
 
@@ -95,6 +96,39 @@ public class Teacher {
 
     public void setDepartmentId(int departmentId) {
         this.departmentId = departmentId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Teacher teacher = (Teacher) o;
+
+        if (getDepartmentId() != teacher.getDepartmentId()) return false;
+        if (getTeachName() != null ? !getTeachName().equals(teacher.getTeachName()) : teacher.getTeachName() != null)
+            return false;
+        if (getTeachAge() != null ? !getTeachAge().equals(teacher.getTeachAge()) : teacher.getTeachAge() != null)
+            return false;
+        if (getTeachBirth() != null ? !getTeachBirth().equals(teacher.getTeachBirth()) : teacher.getTeachBirth() != null)
+            return false;
+        if (getTeachSalary() != null ? !getTeachSalary().equals(teacher.getTeachSalary()) : teacher.getTeachSalary() != null)
+            return false;
+        if (getTeachPhone() != null ? !getTeachPhone().equals(teacher.getTeachPhone()) : teacher.getTeachPhone() != null)
+            return false;
+        return getGender() != null ? getGender().equals(teacher.getGender()) : teacher.getGender() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTeachName() != null ? getTeachName().hashCode() : 0;
+        result = 31 * result + (getTeachAge() != null ? getTeachAge().hashCode() : 0);
+        result = 31 * result + (getTeachBirth() != null ? getTeachBirth().hashCode() : 0);
+        result = 31 * result + (getTeachSalary() != null ? getTeachSalary().hashCode() : 0);
+        result = 31 * result + (getTeachPhone() != null ? getTeachPhone().hashCode() : 0);
+        result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
+        result = 31 * result + getDepartmentId();
+        return result;
     }
 
     @Override

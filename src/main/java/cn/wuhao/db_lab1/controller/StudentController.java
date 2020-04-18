@@ -2,6 +2,8 @@ package cn.wuhao.db_lab1.controller;
 
 import cn.wuhao.db_lab1.entities.Class;
 import cn.wuhao.db_lab1.entities.Student;
+import cn.wuhao.db_lab1.exception.EmptyException;
+import cn.wuhao.db_lab1.exception.SameException;
 import cn.wuhao.db_lab1.serve.ClassServe;
 import cn.wuhao.db_lab1.serve.StudentServe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,13 @@ public class StudentController {
 
     @PostMapping("/stu")
     public String addStu(Student student) {
+        List<Student> students = studentServe.getAll();
+        if (student.getStuName().isEmpty())
+            throw new EmptyException("请填写学生姓名");
+        else if (student.getGender() == null)
+            throw new EmptyException("请勾选学生性别");
+        else if (students.contains(student))
+            throw new SameException("学生已存在");
         studentServe.add(student);
         return "redirect:stus";
     }

@@ -59,8 +59,8 @@
 				</div>
 				<div class="form-group">
 					<label>专业</label>
-					<select th:selected="${teacher.departmentId}" class="form-control" name="departmentId">
-						<option th:each="department:${departments}">[[${department.departmentId}]]</option>
+					<select class="form-control" name="departmentId">
+						<option th:selected="${teacher.departmentId} == ${department.departmentId}" th:each="department:${departments}" th:value="${department.departmentId}">[[${department.departmentName}]]</option>
 					</select>
 				</div>
 				<div class="form-group">

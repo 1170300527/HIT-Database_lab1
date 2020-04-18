@@ -16,9 +16,7 @@ public class StudentDao {
     JdbcTemplate jdbcTemplate;
 
     public List<Student> getAll() {
-        List<Student> students = jdbcTemplate.query("SELECT stuId, stuName, classId, collegeName," +
-                        " departmentname,gender,stuAge, entertime, grade, stuPhone FROM student" +
-                        " NATURAL JOIN class NATURAL JOIN department NATURAL JOIN college;",
+        List<Student> students = jdbcTemplate.query("SELECT * FROM stuInfo;",
                 new BeanPropertyRowMapper<Student>(Student.class));
         return students;
     }
