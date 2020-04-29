@@ -5,7 +5,7 @@
 
 ## 基于springboot | thymeleaf | jdbctemplate | maven
 
- 
+ **登录用户名密码为数据库user表中数据**
 
 ### 运行：
 
